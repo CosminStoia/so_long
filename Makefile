@@ -6,7 +6,7 @@
 #    By: cstoia <cstoia@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/13 11:26:36 by cstoia            #+#    #+#              #
-#    Updated: 2024/04/13 12:47:21 by cstoia           ###   ########.fr        #
+#    Updated: 2024/04/13 13:28:06 by cstoia           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,9 +21,9 @@ MLX_FLAGS := -L./MLX42/build -lmlx42 -I../MLX42/include -lglfw -framework Cocoa 
 SRC_DIR = source
 OBJ_DIR = objects
 LIBFT_DIR = libft
+LIBMLX = ./MLX42
 
 # Libraries and source files
-LIBMLX = ./MLX42
 LIBFT = $(LIBFT_DIR)/libft.a
 SOURCES = $(shell find $(SRC_DIR) -iname "*.c")
 OBJECTS = $(SOURCES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
@@ -54,13 +54,13 @@ $(LIBFT):
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 
-# Clean the project rule
+# Clean the project
 clean:
 	@rm -rf $(OBJ_DIR)
 	@rm -rf $(LIBMLX)/build
 	@make -C $(LIBFT_DIR) clean
 
-# Clean project and object files rule
+# Clean project and object files
 fclean: clean
 	@rm -rf $(NAME)
 	@make -C $(LIBFT_DIR) fclean
