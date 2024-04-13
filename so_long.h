@@ -6,27 +6,27 @@
 /*   By: cstoia <cstoia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 11:00:08 by cstoia            #+#    #+#             */
-/*   Updated: 2024/04/13 11:08:13 by cstoia           ###   ########.fr       */
+/*   Updated: 2024/04/13 20:30:58 by cstoia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "MLX42/MLX42.h"
+# include <MLX42/MLX42.h>
+# include <stdbool.h>
+# include <stdio.h>
 # include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#define WIDTH 256
-#define HEIGHT 256
 
-typedef struct mlx
+# define WIDTH 712
+# define HEIGHT 312
+
+typedef struct s_color
 {
-	void	*window;
-	void	*context;
-	int32_t	width;
-	int32_t	height;
-	double	delta_time;
-}			mlx_t;
+	int	r;
+	int	g;
+	int	b;
+	int a;
+}		t_color;
 
 #endif
