@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "stdlib.h": "c",
+        "libft.h": "c",
+        "stdbool.h": "c",
+        "mlx42.h": "c",
+        "get_next_line.h": "c",
+        "ft_printf.h": "c"
+    }
+}

@@ -1,7 +1,25 @@
 NAME = libft.a
+FT_PRINTF_DIR = ft_printf
+GNL_DIR = get_next_line
+LIBFT_DIR = libft
 CC = CC
 CFLAGS = -Wall -Wextra -Werror
 INCLUDES = ./libft.h
+
+FT_PRINTF = \
+				$(FT_PRINTF_DIR)/ft_printf.c \
+				$(FT_PRINTF_DIR)/ft_put_unsigned_nbr.c \
+				$(FT_PRINTF_DIR)/ft_putchar.c \
+				$(FT_PRINTF_DIR)/ft_putnbr.c \
+				$(FT_PRINTF_DIR)/ft_putp.c \
+				$(FT_PRINTF_DIR)/ft_putstr.c \
+				$(FT_PRINTF_DIR)/ft_putx.c \
+				$(FT_PRINTF_DIR)/ft_putxxx.c
+
+GNL = \
+		$(GNL_DIR)/get_next_line.c \
+		$(GNL_DIR)/get_next_line_utils.c \
+		$(GNL_DIR)/get_next_line.c
 
 CFILES = \
 		./ft_atoi.c \
@@ -39,7 +57,10 @@ CFILES = \
 		./ft_putendl_fd.c \
 		./ft_putnbr_fd.c
 
-OBJECTS = $(CFILES:%.c=%.o)
+OBJECTS = \
+		$(CFILES:%.c=%.o) \
+		$(FT_PRINTF:$(FT_PRINTF_DIR)/%.c=$(FT_PRINTF_DIR)/%.o) \
+		$(GNL:$(GNL_DIR)/%.c=$(GNL_DIR)/%.o) \
 
 CFILES_BONUS = \
 		./ft_lstadd_back_bonus.c \

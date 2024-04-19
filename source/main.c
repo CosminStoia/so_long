@@ -6,66 +6,71 @@
 /*   By: cstoia <cstoia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:34:31 by cstoia            #+#    #+#             */
-/*   Updated: 2024/04/13 20:51:18 by cstoia           ###   ########.fr       */
+/*   Updated: 2024/04/19 14:55:14 by cstoia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "so_long.h"
 
-t_color	make_color(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
+void	free_map(char **map)
 {
-	t_color	color;
+	int	i;
 
-	color.r = r;
-	color.g = g;
-	color.b = b;
-	color.a = a;
-	return (color);
-}
-
-void	ft_colors(void *param)
-{
-	t_color		color;
-	uint32_t	num_pixels;
-	uint32_t	i;
-	mlx_image_t	*image;
-
-	image = (mlx_image_t *)param;
-	color = make_color(255, 255, 255, 255);
-	num_pixels = image->width * image->height;
 	i = 0;
-	while (i < num_pixels)
+	if (map == NULL)
+		return ;
+	while (map[i] != NULL)
 	{
-		mlx_put_pixel(image, i % image->width, i / image->width,
-			*((int32_t *)&color));
+		free(map[i]);
 		i++;
 	}
+	free(map);
 }
 
-int32_t	main(void)
+int	main(int argc, char **argv)
 {
-	mlx_t		*mlx;
-	mlx_image_t	*image;
+	int		fd;
+	char	*line;
+	int		i;
+	char	**map;
 
-	if (!(mlx = mlx_init(WIDTH, HEIGHT, "SO_LONG Game", true)))
+	if (argc > 1)
 	{
-		puts(mlx_strerror(mlx_errno));
-		return (EXIT_FAILURE);
+		fd = open(argv[1], O_RDONLY);
+		if (fd == -1)
+		{
+			perror("Error: Failed to open file");
+			return (-1);
+		}
+		while ((line = get_next_line(fd)) != NULL)
+		{
+			map = ft_split(line, '\n');
+			free(line);
+			if (map == NULL)
+			{
+				perror("Error: Memory allocation failed!\n");
+				free(map);
+				close(fd);
+				return (-1);
+			}
+		}
+		if (validate_map(map))
+		{
+			i = 0;
+			while (map[i] != NULL)
+			{
+				ft_printf("%s\n", map[i]);
+				i++;
+			}
+		}
+		else if (!validate_map(map))
+		{
+			free(map);
+			close(fd);
+			return (-1);
+		}
+		free_map(map);
+		close(fd);
 	}
-	if (!(image = mlx_new_image(mlx, 712, 312)))
-	{
-		mlx_close_window(mlx);
-		puts(mlx_strerror(mlx_errno));
-		return (EXIT_FAILURE);
-	}
-	if (mlx_image_to_window(mlx, image, 0, 0) == 1)
-	{
-		mlx_close_window(mlx);
-		puts(mlx_strerror(mlx_errno));
-		return (EXIT_FAILURE);
-	}
-	mlx_loop_hook(mlx, ft_colors, image);
-	mlx_loop(mlx);
-	mlx_terminate(mlx);
-	return (EXIT_SUCCESS);
+	return (1);
 }

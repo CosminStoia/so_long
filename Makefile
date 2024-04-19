@@ -6,7 +6,7 @@
 #    By: cstoia <cstoia@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/13 11:26:36 by cstoia            #+#    #+#              #
-#    Updated: 2024/04/13 13:28:06 by cstoia           ###   ########.fr        #
+#    Updated: 2024/04/17 21:33:38 by cstoia           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,10 +23,10 @@ OBJ_DIR = objects
 LIBFT_DIR = libft
 LIBMLX = ./MLX42
 
-# Libraries and source files
+# Libraries and source files (Do not use "*.c", because of the norm!!)
 LIBFT = $(LIBFT_DIR)/libft.a
-SOURCES = $(shell find $(SRC_DIR) -iname "*.c")
-OBJECTS = $(SOURCES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+SOURCES = main.c map_check.c
+OBJECTS = $(SOURCES:%.c=$(OBJ_DIR)/%.o)
 
 # Headers
 HEADERS := -I ./include -I $(LIBMLX)/include -I $(LIBFT_DIR)

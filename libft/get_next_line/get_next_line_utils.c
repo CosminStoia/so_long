@@ -6,13 +6,13 @@
 /*   By: cstoia <cstoia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 14:11:39 by cstoia            #+#    #+#             */
-/*   Updated: 2024/03/28 15:57:48 by cstoia           ###   ########.fr       */
+/*   Updated: 2024/04/17 17:30:32 by cstoia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(char *str)
+size_t	ft_gnl_strlen(char *str)
 {
 	size_t	i;
 
@@ -24,7 +24,7 @@ size_t	ft_strlen(char *str)
 	return (i);
 }
 
-char	*ft_strchr(char *str, int c)
+char	*ft_gnl_strchr(char *str, int c)
 {
 	unsigned int	i;
 
@@ -40,12 +40,12 @@ char	*ft_strchr(char *str, int c)
 	return (NULL);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_gnl_strjoin(char *s1, char *s2)
 {
 	char	*str;
 	int		count;
 
-	str = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	str = (char *)malloc((ft_gnl_strlen(s1) + ft_gnl_strlen(s2) + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
 	count = 0;
@@ -63,12 +63,12 @@ char	*ft_strjoin_and_free(char *string, char *buffer)
 
 	if (string == NULL || buffer == NULL)
 		return (NULL);
-	str = ft_strjoin(string, buffer);
+	str = ft_gnl_strjoin(string, buffer);
 	free(string);
 	return (str);
 }
 
-void	ft_bzero(void *s, size_t n)
+void	ft_gnl_bzero(void *s, size_t n)
 {
 	unsigned char	*a;
 

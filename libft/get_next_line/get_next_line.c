@@ -6,7 +6,7 @@
 /*   By: cstoia <cstoia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 14:11:06 by cstoia            #+#    #+#             */
-/*   Updated: 2024/03/26 22:57:35 by cstoia           ###   ########.fr       */
+/*   Updated: 2024/04/17 17:30:33 by cstoia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_read_file(int fd, char *string)
 		string[0] = '\0';
 	}
 	bytes_red = 1;
-	while (bytes_red != 0 && !ft_strchr(string, '\n'))
+	while (bytes_red != 0 && !ft_gnl_strchr(string, '\n'))
 	{
 		bytes_red = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_red == -1)
@@ -95,7 +95,7 @@ char	*ft_update_string(char *string)
 		free(string);
 		return (NULL);
 	}
-	str = (char *)malloc((ft_strlen(string) - i + 1) * sizeof(char));
+	str = (char *)malloc((ft_gnl_strlen(string) - i + 1) * sizeof(char));
 	if (!str)
 	{
 		free(string);
@@ -120,7 +120,7 @@ char	*get_next_line(int fd)
 	{
 		if (read(fd, NULL, 0) < 0)
 			return (NULL);
-		ft_bzero(string, ft_strlen(string));
+		ft_gnl_bzero(string, ft_gnl_strlen(string));
 		return (NULL);
 	}
 	string = ft_read_file(fd, string);
