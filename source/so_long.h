@@ -6,7 +6,7 @@
 /*   By: cstoia <cstoia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 11:00:08 by cstoia            #+#    #+#             */
-/*   Updated: 2024/04/17 23:28:12 by cstoia           ###   ########.fr       */
+/*   Updated: 2024/04/19 21:16:01 by cstoia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ typedef struct s_characters
 }		t_characters;
 
 int		ft_check_map_dimensions(char **map);
-int		ft_check_c(t_characters *count, char c);
+int		ft_check_character_2(t_characters *count, char c);
 int		ft_check_characters(char **map, int rows, int cols);
-int		validate_map(char **map);
+int		ft_validate_map(char **map);
 
 #endif

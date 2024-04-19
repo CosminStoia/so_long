@@ -6,7 +6,7 @@
 /*   By: cstoia <cstoia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 21:28:18 by cstoia            #+#    #+#             */
-/*   Updated: 2024/04/19 14:57:25 by cstoia           ###   ########.fr       */
+/*   Updated: 2024/04/19 21:15:50 by cstoia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ int	ft_check_map_dimensions(char **map)
 		}
 		else if (current_col != cols)
 		{
-			return (-1);
+			perror("Error: Map dimensions invalid");
+			exit(EXIT_FAILURE);
 		}
 		rows++;
 	}
@@ -42,16 +43,11 @@ int	ft_check_map_dimensions(char **map)
 
 int	ft_check_character_2(t_characters *count, char c)
 {
-	if (c == '\0')
-	{
-		perror("Error: NULL character found in the map!");
-		return (-1);
-	}
 	if (c != WALL && c != PLAYER && c != EXIT && c != COLLECTIBLE
-		&& c != BACKROUND)
+		&& c != BACKROUND && c != '\0')
 	{
 		perror("Error: Invalid characters");
-		return (-1);
+		exit(EXIT_FAILURE);
 	}
 	if (c == PLAYER)
 		count->player++;
@@ -85,22 +81,22 @@ int	ft_check_characters(char **map, int rows, int cols)
 	if (count.player != 1)
 	{
 		perror("Error: Number of players invalid!");
-		return (-1);
+		exit(EXIT_FAILURE);
 	}
 	if (count.exit != 1)
 	{
 		perror("Error: Number of exits invalid!");
-		return (-1);
+		exit(EXIT_FAILURE);
 	}
 	if (count.collectibles < 1)
 	{
 		perror("Error: Invalid number of collectibles!");
-		return (-1);
+		exit(EXIT_FAILURE);
 	}
 	return (1);
 }
 
-int	validate_map(char **map)
+int	ft_validate_map(char **map)
 {
 	int	rows;
 	int	cols;
@@ -109,7 +105,6 @@ int	validate_map(char **map)
 	cols = 0;
 	if (!ft_check_map_dimensions(map))
 	{
-		perror("Error: Map dimensions invalid");
 		return (-1);
 	}
 	while (map[rows] != NULL)

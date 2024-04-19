@@ -6,7 +6,7 @@
 /*   By: cstoia <cstoia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:34:31 by cstoia            #+#    #+#             */
-/*   Updated: 2024/04/19 14:55:14 by cstoia           ###   ########.fr       */
+/*   Updated: 2024/04/19 21:19:20 by cstoia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,13 @@ int	main(int argc, char **argv)
 {
 	int		fd;
 	char	*line;
-	int		i;
 	char	**map;
+	char	*concatenated_lines;
+	int		i;
 
+	map = NULL;
+	line = NULL;
+	concatenated_lines = ft_calloc(1, 1);
 	if (argc > 1)
 	{
 		fd = open(argv[1], O_RDONLY);
@@ -44,33 +48,31 @@ int	main(int argc, char **argv)
 		}
 		while ((line = get_next_line(fd)) != NULL)
 		{
-			map = ft_split(line, '\n');
+			concatenated_lines = ft_strjoin_and_free(concatenated_lines, line);
 			free(line);
-			if (map == NULL)
-			{
-				perror("Error: Memory allocation failed!\n");
-				free(map);
-				close(fd);
-				return (-1);
-			}
 		}
-		if (validate_map(map))
+		map = ft_split(concatenated_lines, '\n');
+		free(concatenated_lines);
+		if (map == NULL)
 		{
-			i = 0;
-			while (map[i] != NULL)
-			{
-				ft_printf("%s\n", map[i]);
-				i++;
-			}
+			perror("Error: Memory allocation failed!\n");
+			close(fd);
+			return (-1);
 		}
-		else if (!validate_map(map))
+		if (!ft_validate_map(map))
 		{
 			free(map);
 			close(fd);
 			return (-1);
 		}
+		i = 0;
+		while (map[i] != NULL)
+		{
+			ft_printf("%s", map[i]);
+			i++;
+		}
 		free_map(map);
 		close(fd);
 	}
-	return (1);
+	return (0);
 }
