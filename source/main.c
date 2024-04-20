@@ -6,7 +6,7 @@
 /*   By: cstoia <cstoia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:34:31 by cstoia            #+#    #+#             */
-/*   Updated: 2024/04/20 16:11:01 by cstoia           ###   ########.fr       */
+/*   Updated: 2024/04/20 17:16:03 by cstoia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	ft_render_image(mlx_t *mlx, t_game *game)
 	while (y < game->rows)
 	{
 		x = 0;
-		while (x < game->cols)
+		while (x < game->cols - 1)
 		{
 			c = game->map[y][x];
 			if (c == '1')
@@ -111,12 +111,18 @@ void	ft_render_image(mlx_t *mlx, t_game *game)
 				texture = mlx_load_png("./image_files/exit.png");
 				image = mlx_texture_to_image(mlx, texture);
 			}
-			else
+			else if(c == '0')
 			{
 				texture = mlx_load_png("./image_files/stone.png");
 				image = mlx_texture_to_image(mlx, texture);
 			}
-			mlx_image_to_window(mlx, image, x, y);
+			else if(c == '\n')
+			{
+				y++;
+				x = 0;
+			}
+			mlx_resize_image(image, 50, 50);
+			mlx_image_to_window(mlx, image, x * 50, y * 50);
 			x++;
 		}
 		y++;
@@ -132,7 +138,7 @@ int	main(int argc, char **argv)
 	{
 		game = ft_calloc(1, sizeof(t_game));
 		ft_open_and_read_file(argv[1], game);
-		if (!(mlx = mlx_init(WIDTH, HEIGHT, "so_long", true)))
+		if (!(mlx = mlx_init((game->cols - 1) * 50, game->rows * 50, "so_long", true)))
 		{
 			perror("Error: Failed to initialize window");
 			exit(EXIT_FAILURE);
