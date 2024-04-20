@@ -6,7 +6,7 @@
 /*   By: cstoia <cstoia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 11:00:08 by cstoia            #+#    #+#             */
-/*   Updated: 2024/04/19 21:16:01 by cstoia           ###   ########.fr       */
+/*   Updated: 2024/04/20 12:09:02 by cstoia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,23 @@
 # define COLLECTIBLE 'C'
 # define BACKROUND '0'
 
-typedef struct s_characters
+typedef struct s_game
 {
-	int	player;
-	int	exit;
-	int	collectibles;
-}		t_characters;
+	int		player;
+	int		exit;
+	int		collectibles;
+	int		rows;
+	int		cols;
+	char	**map;
+}			t_game;
 
-int		ft_check_map_dimensions(char **map);
-int		ft_check_character_2(t_characters *count, char c);
-int		ft_check_characters(char **map, int rows, int cols);
-int		ft_validate_map(char **map);
+void		free_map(char **map);
+int			ft_open_and_read_file(char *input, t_game *game);
+void		ft_render_image(mlx_t *mlx, t_game *game);
+int			ft_check_map_dimensions(char **map);
+int			ft_check_character_2(t_game *game, char c);
+void		ft_char_error(t_game *game);
+int			ft_check_characters(t_game *game);
+int			ft_validate_map(t_game *game);
 
 #endif
