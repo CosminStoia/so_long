@@ -6,7 +6,7 @@
 /*   By: cstoia <cstoia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 21:28:18 by cstoia            #+#    #+#             */
-/*   Updated: 2024/04/20 12:50:59 by cstoia           ###   ########.fr       */
+/*   Updated: 2024/04/21 14:07:59 by cstoia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 // Check map dimensions (must be rectangular)
 // Check all the characters in the map
-// Function to validate the map (Calling ft_check_map_dimension and ft_check_character)
+// Function to validate the map 
+//(Calling ft_check_map_dimension and ft_check_character)
 
 int	ft_check_map_dimensions(char **map)
 {
@@ -57,6 +58,7 @@ int	ft_check_character_2(t_game *game, char c)
 		game->collectibles++;
 	return (1);
 }
+
 void	ft_char_error(t_game *game)
 {
 	if (game->player != 1)
@@ -75,6 +77,7 @@ void	ft_char_error(t_game *game)
 		exit(EXIT_FAILURE);
 	}
 }
+
 int	ft_check_characters(t_game *game)
 {
 	int		i;
