@@ -6,7 +6,7 @@
 /*   By: cstoia <cstoia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 21:28:18 by cstoia            #+#    #+#             */
-/*   Updated: 2024/04/21 14:07:59 by cstoia           ###   ########.fr       */
+/*   Updated: 2024/04/22 11:10:03 by cstoia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,17 @@ int	ft_check_map_dimensions(char **map)
 
 int	ft_check_character_2(t_game *game, char c)
 {
-	if (c != WALL && c != PLAYER && c != EXIT && c != COLLECTIBLE
-		&& c != BACKROUND && c != '\0')
+	if (c != '1' && c != 'P' && c != 'E' && c != 'C'
+		&& c != '0' && c != '\0')
 	{
 		perror("Error: Invalid characters");
 		exit(EXIT_FAILURE);
 	}
-	if (c == PLAYER)
+	if (c == 'P')
 		game->player++;
-	else if (c == EXIT)
+	else if (c == 'E')
 		game->exit++;
-	else if (c == COLLECTIBLE)
+	else if (c == 'C')
 		game->collectibles++;
 	return (1);
 }

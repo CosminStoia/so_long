@@ -6,32 +6,46 @@
 /*   By: cstoia <cstoia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 13:34:44 by cstoia            #+#    #+#             */
-/*   Updated: 2024/04/21 13:50:26 by cstoia           ###   ########.fr       */
+/*   Updated: 2024/04/22 11:11:34 by cstoia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-mlx_image_t	*ft_check_texture(mlx_t *mlx, char c)
+void	ft_check_texture(mlx_t *mlx, t_game *game)
 {
-	mlx_image_t		*image;
-	mlx_texture_t	*texture;
+	int	i;
 
-	texture = NULL;
-	if (c == '1')
-		texture = mlx_load_png("./image_files/wall.png");
-	else if (c == 'P')
-		texture = mlx_load_png("./image_files/player.png");
-	else if (c == 'C')
-		texture = mlx_load_png("./image_files/collectible.png");
-	else if (c == 'E')
-		texture = mlx_load_png("./image_files/exit.png");
-	else if (c == '0')
-		texture = mlx_load_png("./image_files/stone.png");
-	image = mlx_texture_to_image(mlx, texture);
-	return (image);
+	i = 0;
+	game->texture[0] = mlx_load_png("./image_files/wall.png");
+	game->texture[1] = mlx_load_png("./image_files/player.png");
+	game->texture[2] = mlx_load_png("./image_files/collectible.png");
+	game->texture[3] = mlx_load_png("./image_files/exit.png");
+	game->texture[4] = mlx_load_png("./image_files/stone.png");
+	while (i < 5)
+	{
+		game->image[i] = mlx_texture_to_image(mlx, game->texture[i]);
+		i++;
+	}
 }
 
+mlx_image_t	*ft_check_image(mlx_t *mlx, t_game *game, char c)
+{
+	mlx_image_t	*image;
+
+	ft_check_texture(mlx, game);
+	if (c == '1')
+		image = game->image[0];
+	if (c == 'P')
+		image = game->image[1];
+	if (c == 'C')
+		image = game->image[2];
+	if (c == 'E')
+		image = game->image[3];
+	if (c == '0')
+		image = game->image[4];
+	return (image);
+}
 void	ft_render_image(mlx_t *mlx, t_game *game)
 {
 	mlx_image_t	*image;
@@ -47,7 +61,7 @@ void	ft_render_image(mlx_t *mlx, t_game *game)
 		{
 			c = game->map[y][x];
 			if (c == '1' || c == '0' || c == 'P' || c == 'E' || c == 'C')
-				image = ft_check_texture(mlx, c);
+				image = ft_check_image(mlx, game, c);
 			else if (c == '\n')
 			{
 				y++;
