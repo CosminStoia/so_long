@@ -6,7 +6,7 @@
 /*   By: cstoia <cstoia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:03:26 by cstoia            #+#    #+#             */
-/*   Updated: 2024/04/22 16:53:10 by cstoia           ###   ########.fr       */
+/*   Updated: 2024/04/22 17:48:00 by cstoia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ void	ft_input(void *param)
 	{
 		if (mlx_is_key_down(game->mlx, MLX_KEY_W))
 		{
+			if (game->map[game->position.y - 1][game->position.x] == 'E')
+				if (game->count_collectible < game->collectibles)
+					return ;
 			if (game->map[game->position.y - 1][game->position.x] != '1')
 			{
 				game->position.y -= 1;
@@ -30,10 +33,15 @@ void	ft_input(void *param)
 					* 50, game->position.y * 50);
 				mlx_image_to_window(game->mlx, game->image[4], game->position.x
 					* 50, (game->position.y + 1) * 50);
+				game->count++;
+				ft_printf("Move: %d\n", game->count);
 			}
 		}
 		if (mlx_is_key_down(game->mlx, MLX_KEY_S))
 		{
+			if (game->map[game->position.y + 1][game->position.x] == 'E')
+				if (game->count_collectible < game->collectibles)
+					return ;
 			if (game->map[game->position.y + 1][game->position.x] != '1')
 			{
 				game->position.y += 1;
@@ -41,10 +49,15 @@ void	ft_input(void *param)
 					* 50, game->position.y * 50);
 				mlx_image_to_window(game->mlx, game->image[4], game->position.x
 					* 50, (game->position.y - 1) * 50);
+				game->count++;
+				ft_printf("Move: %d\n", game->count);
 			}
 		}
 		if (mlx_is_key_down(game->mlx, MLX_KEY_A))
 		{
+			if (game->map[game->position.y][game->position.x - 1] == 'E')
+				if (game->count_collectible < game->collectibles)
+					return ;
 			if (game->map[game->position.y][game->position.x - 1] != '1')
 			{
 				game->position.x -= 1;
@@ -52,10 +65,15 @@ void	ft_input(void *param)
 					* 50, game->position.y * 50);
 				mlx_image_to_window(game->mlx, game->image[4], (game->position.x
 						+ 1) * 50, game->position.y * 50);
+				game->count++;
+				ft_printf("Move: %d\n", game->count);
 			}
 		}
 		if (mlx_is_key_down(game->mlx, MLX_KEY_D))
 		{
+			if (game->map[game->position.y][game->position.x + 1] == 'E')
+				if (game->count_collectible < game->collectibles)
+					return ;
 			if (game->map[game->position.y][game->position.x + 1] != '1')
 			{
 				game->position.x += 1;
@@ -63,7 +81,14 @@ void	ft_input(void *param)
 					* 50, game->position.y * 50);
 				mlx_image_to_window(game->mlx, game->image[4], (game->position.x
 						- 1) * 50, game->position.y * 50);
+				game->count++;
+				ft_printf("Move: %d\n", game->count);
 			}
+		}
+		if (game->map[game->position.y][game->position.x] == 'C')
+		{
+			game->count_collectible++;
+			game->map[game->position.y][game->position.x] = '0';
 		}
 	}
 }

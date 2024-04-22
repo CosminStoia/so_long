@@ -6,7 +6,7 @@
 /*   By: cstoia <cstoia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 11:00:08 by cstoia            #+#    #+#             */
-/*   Updated: 2024/04/22 15:39:41 by cstoia           ###   ########.fr       */
+/*   Updated: 2024/04/22 17:15:05 by cstoia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ typedef struct s_game
 	mlx_image_t		*image[5];
 	mlx_texture_t	*texture[5];
 	t_position		position;
-
+	int				count;
+	int				count_collectible;
 }					t_game;
 
 int					ft_open_and_read_file(char *input, t_game *game);
