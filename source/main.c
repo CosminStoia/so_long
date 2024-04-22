@@ -6,26 +6,11 @@
 /*   By: cstoia <cstoia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:34:31 by cstoia            #+#    #+#             */
-/*   Updated: 2024/04/21 14:06:54 by cstoia           ###   ########.fr       */
+/*   Updated: 2024/04/22 15:31:53 by cstoia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	free_map(char **map)
-{
-	int	i;
-
-	i = 0;
-	if (map == NULL)
-		return ;
-	while (map[i] != NULL)
-	{
-		free(map[i]);
-		i++;
-	}
-	free(map);
-}
 
 int	main(int argc, char **argv)
 {
@@ -42,7 +27,9 @@ int	main(int argc, char **argv)
 			perror("Error: Failed to initialize window");
 			exit(EXIT_FAILURE);
 		}
+		game->mlx = mlx;
 		ft_render_image(mlx, game);
+		mlx_loop_hook(mlx, ft_input, game);
 		mlx_loop(mlx);
 		mlx_terminate(mlx);
 	}

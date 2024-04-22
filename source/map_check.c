@@ -6,7 +6,7 @@
 /*   By: cstoia <cstoia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 21:28:18 by cstoia            #+#    #+#             */
-/*   Updated: 2024/04/22 11:10:03 by cstoia           ###   ########.fr       */
+/*   Updated: 2024/04/22 15:50:15 by cstoia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // Check map dimensions (must be rectangular)
 // Check all the characters in the map
-// Function to validate the map 
+// Function to validate the map
 //(Calling ft_check_map_dimension and ft_check_character)
 
 int	ft_check_map_dimensions(char **map)
@@ -42,16 +42,19 @@ int	ft_check_map_dimensions(char **map)
 	return (1);
 }
 
-int	ft_check_character_2(t_game *game, char c)
+int	ft_check_character_2(t_game *game, char c, int i, int j)
 {
-	if (c != '1' && c != 'P' && c != 'E' && c != 'C'
-		&& c != '0' && c != '\0')
+	if (c != '1' && c != 'P' && c != 'E' && c != 'C' && c != '0' && c != '\0')
 	{
 		perror("Error: Invalid characters");
 		exit(EXIT_FAILURE);
 	}
 	if (c == 'P')
+	{
+		game->position.x = i;
+		game->position.y = j;
 		game->player++;
+	}
 	else if (c == 'E')
 		game->exit++;
 	else if (c == 'C')
@@ -91,7 +94,7 @@ int	ft_check_characters(t_game *game)
 		while (j < game->cols)
 		{
 			c = game->map[i][j];
-			ft_check_character_2(game, c);
+			ft_check_character_2(game, c, j, i);
 			j++;
 		}
 		i++;
