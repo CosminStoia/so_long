@@ -6,7 +6,7 @@
 /*   By: cstoia <cstoia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 21:28:18 by cstoia            #+#    #+#             */
-/*   Updated: 2024/04/22 15:50:15 by cstoia           ###   ########.fr       */
+/*   Updated: 2024/04/23 13:17:22 by cstoia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,22 +62,31 @@ int	ft_check_character_2(t_game *game, char c, int i, int j)
 	return (1);
 }
 
-void	ft_char_error(t_game *game)
+void	ft_check_walls(t_game *game)
 {
-	if (game->player != 1)
+	int	x;
+	int	y;
+
+	x = 1;
+	y = 0;
+	while (x < game->cols)
 	{
-		perror("Error: Number of players invalid!");
-		exit(EXIT_FAILURE);
+		if (game->map[0][x - 1] != '1')
+			ft_print_error();
+		x++;
 	}
-	if (game->exit != 1)
+	while (y < game->rows - 1)
 	{
-		perror("Error: Number of exits invalid!");
-		exit(EXIT_FAILURE);
+		if (game->map[y][0] != '1' || game->map[y][game->cols - 2] != '1')
+			ft_print_error();
+		y++;
 	}
-	if (game->collectibles < 1)
+	x = 1;
+	while (x < game->cols)
 	{
-		perror("Error: Invalid number of collectibles!");
-		exit(EXIT_FAILURE);
+		if (game->map[game->rows - 1][x - 1] != '1')
+			ft_print_error();
+		x++;
 	}
 }
 
@@ -122,6 +131,12 @@ int	ft_validate_map(t_game *game)
 	if (!ft_check_characters(game))
 	{
 		return (-1);
+	}
+	ft_check_walls(game);
+	if (ft_check_flood(game) < 0)
+	{
+		perror("Error: Flood fill failed!");
+		exit(EXIT_FAILURE);
 	}
 	return (1);
 }

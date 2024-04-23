@@ -6,7 +6,7 @@
 #    By: cstoia <cstoia@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/13 11:26:36 by cstoia            #+#    #+#              #
-#    Updated: 2024/04/22 13:03:36 by cstoia           ###   ########.fr        #
+#    Updated: 2024/04/23 10:19:26 by cstoia           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ LIBMLX = ./MLX42
 
 # Libraries and source files (Do not use "*.c", because of the norm!!)
 LIBFT = $(LIBFT_DIR)/libft.a
-SOURCES = main.c map_check.c render.c open_and_read_file.c input.c
+SOURCES = main.c map_check.c render.c open_and_read_file.c input.c floodfill.c errors.c
 OBJECTS = $(SOURCES:%.c=$(OBJ_DIR)/%.o)
 
 # Headers

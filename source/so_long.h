@@ -6,7 +6,7 @@
 /*   By: cstoia <cstoia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 11:00:08 by cstoia            #+#    #+#             */
-/*   Updated: 2024/04/22 17:15:05 by cstoia           ###   ########.fr       */
+/*   Updated: 2024/04/23 13:04:14 by cstoia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,19 @@
 # include <stdio.h>
 # include <stdlib.h>
 
-typedef struct s_init_pos
+typedef struct s_flood_count
 {
-	int				x;
-	int				y;
-}					t_init_pos;
+	int				p;
+	int				c;
+	int				e;
+}					t_flood_count;
 
 typedef struct s_position
 {
 	int				x;
 	int				y;
 }					t_position;
+
 typedef struct s_game
 {
 	mlx_t			*mlx;
@@ -40,11 +42,13 @@ typedef struct s_game
 	int				rows;
 	int				cols;
 	char			**map;
+	char			**mapcopy;
 	mlx_image_t		*image[5];
 	mlx_texture_t	*texture[5];
 	t_position		position;
 	int				count;
 	int				count_collectible;
+	t_flood_count	flood_count;
 }					t_game;
 
 int					ft_open_and_read_file(char *input, t_game *game);
@@ -61,4 +65,9 @@ void				ft_count_rows_and_cols(t_game *game, char *line);
 void				ft_map_error1(int fd);
 void				ft_map_error2(t_game *game, int fd);
 void				ft_input(void *param);
+void				ft_flood_fill(char **tab, t_game *game, t_position *pos);
+int					ft_check_flood(t_game *game);
+void				ft_check_walls(t_game *game);
+void				ft_print_error(void);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: cstoia <cstoia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 13:51:06 by cstoia            #+#    #+#             */
-/*   Updated: 2024/04/21 14:17:57 by cstoia           ###   ########.fr       */
+/*   Updated: 2024/04/23 13:08:49 by cstoia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,11 @@ int	ft_open_and_read_file(char *input, t_game *game)
 		line = get_next_line(fd);
 	}
 	game->map = ft_split(concatenated_lines, '\n');
+	game->mapcopy = ft_split(concatenated_lines, '\n');
 	free(concatenated_lines);
 	if (game->map == NULL)
+		ft_map_error1(fd);
+	if (game->mapcopy == NULL)
 		ft_map_error1(fd);
 	if (!ft_validate_map(game))
 		ft_map_error2(game, fd);
