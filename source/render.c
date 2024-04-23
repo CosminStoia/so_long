@@ -6,7 +6,7 @@
 /*   By: cstoia <cstoia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 13:34:44 by cstoia            #+#    #+#             */
-/*   Updated: 2024/04/22 15:44:26 by cstoia           ###   ########.fr       */
+/*   Updated: 2024/04/23 13:20:11 by cstoia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ mlx_image_t	*ft_check_image(mlx_t *mlx, t_game *game, char c)
 		image = game->image[4];
 	return (image);
 }
+
 void	ft_render_image(mlx_t *mlx, t_game *game)
 {
 	mlx_image_t	*image;

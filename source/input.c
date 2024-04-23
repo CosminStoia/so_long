@@ -6,11 +6,79 @@
 /*   By: cstoia <cstoia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:03:26 by cstoia            #+#    #+#             */
-/*   Updated: 2024/04/22 17:48:00 by cstoia           ###   ########.fr       */
+/*   Updated: 2024/04/23 13:34:38 by cstoia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	ft_if1(t_game *game)
+{
+	if (game->map[game->position.y - 1][game->position.x] == 'E')
+		if (game->count_collectible < game->collectibles)
+			return ;
+	if (game->map[game->position.y - 1][game->position.x] != '1')
+	{
+		game->position.y -= 1;
+		mlx_image_to_window(game->mlx, game->image[1], game->position.x * 50,
+			game->position.y * 50);
+		mlx_image_to_window(game->mlx, game->image[4], game->position.x * 50,
+			(game->position.y + 1) * 50);
+		game->count++;
+		ft_printf("Move: %d\n", game->count);
+	}
+}
+
+void	ft_if2(t_game *game)
+{
+	if (game->map[game->position.y + 1][game->position.x] == 'E')
+		if (game->count_collectible < game->collectibles)
+			return ;
+	if (game->map[game->position.y + 1][game->position.x] != '1')
+	{
+		game->position.y += 1;
+		mlx_image_to_window(game->mlx, game->image[1], game->position.x * 50,
+			game->position.y * 50);
+		mlx_image_to_window(game->mlx, game->image[4], game->position.x * 50,
+			(game->position.y - 1) * 50);
+		game->count++;
+		ft_printf("Move: %d\n", game->count);
+	}
+}
+
+void	ft_if3(t_game *game)
+{
+	if (game->map[game->position.y][game->position.x - 1] == 'E')
+		if (game->count_collectible < game->collectibles)
+			return ;
+	if (game->map[game->position.y][game->position.x - 1] != '1')
+	{
+		game->position.x -= 1;
+		mlx_image_to_window(game->mlx, game->image[1], game->position.x * 50,
+			game->position.y * 50);
+		mlx_image_to_window(game->mlx, game->image[4], (game->position.x + 1)
+			* 50, game->position.y * 50);
+		game->count++;
+		ft_printf("Move: %d\n", game->count);
+	}
+}
+
+void	ft_if4(t_game *game)
+{
+	if (game->map[game->position.y][game->position.x + 1] == 'E')
+		if (game->count_collectible < game->collectibles)
+			return ;
+	if (game->map[game->position.y][game->position.x + 1] != '1')
+	{
+		game->position.x += 1;
+		mlx_image_to_window(game->mlx, game->image[1], game->position.x * 50,
+			game->position.y * 50);
+		mlx_image_to_window(game->mlx, game->image[4], (game->position.x - 1)
+			* 50, game->position.y * 50);
+		game->count++;
+		ft_printf("Move: %d\n", game->count);
+	}
+}
 
 void	ft_input(void *param)
 {
@@ -22,69 +90,13 @@ void	ft_input(void *param)
 	if (game->map[game->position.y][game->position.x] != 'E')
 	{
 		if (mlx_is_key_down(game->mlx, MLX_KEY_W))
-		{
-			if (game->map[game->position.y - 1][game->position.x] == 'E')
-				if (game->count_collectible < game->collectibles)
-					return ;
-			if (game->map[game->position.y - 1][game->position.x] != '1')
-			{
-				game->position.y -= 1;
-				mlx_image_to_window(game->mlx, game->image[1], game->position.x
-					* 50, game->position.y * 50);
-				mlx_image_to_window(game->mlx, game->image[4], game->position.x
-					* 50, (game->position.y + 1) * 50);
-				game->count++;
-				ft_printf("Move: %d\n", game->count);
-			}
-		}
+			ft_if1(game);
 		if (mlx_is_key_down(game->mlx, MLX_KEY_S))
-		{
-			if (game->map[game->position.y + 1][game->position.x] == 'E')
-				if (game->count_collectible < game->collectibles)
-					return ;
-			if (game->map[game->position.y + 1][game->position.x] != '1')
-			{
-				game->position.y += 1;
-				mlx_image_to_window(game->mlx, game->image[1], game->position.x
-					* 50, game->position.y * 50);
-				mlx_image_to_window(game->mlx, game->image[4], game->position.x
-					* 50, (game->position.y - 1) * 50);
-				game->count++;
-				ft_printf("Move: %d\n", game->count);
-			}
-		}
+			ft_if2(game);
 		if (mlx_is_key_down(game->mlx, MLX_KEY_A))
-		{
-			if (game->map[game->position.y][game->position.x - 1] == 'E')
-				if (game->count_collectible < game->collectibles)
-					return ;
-			if (game->map[game->position.y][game->position.x - 1] != '1')
-			{
-				game->position.x -= 1;
-				mlx_image_to_window(game->mlx, game->image[1], game->position.x
-					* 50, game->position.y * 50);
-				mlx_image_to_window(game->mlx, game->image[4], (game->position.x
-						+ 1) * 50, game->position.y * 50);
-				game->count++;
-				ft_printf("Move: %d\n", game->count);
-			}
-		}
+			ft_if3(game);
 		if (mlx_is_key_down(game->mlx, MLX_KEY_D))
-		{
-			if (game->map[game->position.y][game->position.x + 1] == 'E')
-				if (game->count_collectible < game->collectibles)
-					return ;
-			if (game->map[game->position.y][game->position.x + 1] != '1')
-			{
-				game->position.x += 1;
-				mlx_image_to_window(game->mlx, game->image[1], game->position.x
-					* 50, game->position.y * 50);
-				mlx_image_to_window(game->mlx, game->image[4], (game->position.x
-						- 1) * 50, game->position.y * 50);
-				game->count++;
-				ft_printf("Move: %d\n", game->count);
-			}
-		}
+			ft_if4(game);
 		if (game->map[game->position.y][game->position.x] == 'C')
 		{
 			game->count_collectible++;

@@ -6,7 +6,7 @@
 /*   By: cstoia <cstoia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 13:51:06 by cstoia            #+#    #+#             */
-/*   Updated: 2024/04/23 13:08:49 by cstoia           ###   ########.fr       */
+/*   Updated: 2024/04/23 13:23:06 by cstoia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,14 @@ void	ft_count_rows_and_cols(t_game *game, char *line)
 	game->rows++;
 }
 
-void	ft_map_error1(int fd)
+void	ft_map_error3(t_game *game, int fd)
 {
-	perror("Error: Memory allocation failed!\n");
-	close(fd);
-	exit(EXIT_FAILURE);
-}
-
-void	ft_map_error2(t_game *game, int fd)
-{
-	free(game->map);
-	close(fd);
-	exit(EXIT_FAILURE);
+	if (game->map == NULL)
+		ft_map_error1(fd);
+	if (game->mapcopy == NULL)
+		ft_map_error1(fd);
+	if (!ft_validate_map(game))
+		ft_map_error2(game, fd);
 }
 
 int	ft_open_and_read_file(char *input, t_game *game)
@@ -63,12 +59,7 @@ int	ft_open_and_read_file(char *input, t_game *game)
 	game->map = ft_split(concatenated_lines, '\n');
 	game->mapcopy = ft_split(concatenated_lines, '\n');
 	free(concatenated_lines);
-	if (game->map == NULL)
-		ft_map_error1(fd);
-	if (game->mapcopy == NULL)
-		ft_map_error1(fd);
-	if (!ft_validate_map(game))
-		ft_map_error2(game, fd);
+	ft_map_error3(game, fd);
 	close(fd);
 	return (EXIT_SUCCESS);
 }

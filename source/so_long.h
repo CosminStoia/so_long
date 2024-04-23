@@ -6,7 +6,7 @@
 /*   By: cstoia <cstoia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 11:00:08 by cstoia            #+#    #+#             */
-/*   Updated: 2024/04/23 13:04:14 by cstoia           ###   ########.fr       */
+/*   Updated: 2024/04/23 13:34:37 by cstoia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,15 @@ void				ft_file_error(void);
 void				ft_count_rows_and_cols(t_game *game, char *line);
 void				ft_map_error1(int fd);
 void				ft_map_error2(t_game *game, int fd);
-void				ft_input(void *param);
 void				ft_flood_fill(char **tab, t_game *game, t_position *pos);
 int					ft_check_flood(t_game *game);
 void				ft_check_walls(t_game *game);
 void				ft_print_error(void);
+void				ft_map_error3(t_game *game, int fd);
+void				ft_if1(t_game *game);
+void				ft_if2(t_game *game);
+void				ft_if3(t_game *game);
+void				ft_if4(t_game *game);
+void				ft_input(void *param);
 
 #endif
