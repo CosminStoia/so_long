@@ -6,7 +6,7 @@
 /*   By: cstoia <cstoia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:34:31 by cstoia            #+#    #+#             */
-/*   Updated: 2024/04/23 12:39:47 by cstoia           ###   ########.fr       */
+/*   Updated: 2024/04/26 12:55:00 by cstoia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int	main(int argc, char **argv)
 		}
 		game->mlx = mlx;
 		ft_render_image(mlx, game);
-		mlx_loop_hook(mlx, ft_input, game);
+		mlx_key_hook(mlx, &ft_input, game);
 		mlx_loop(mlx);
-		mlx_terminate(mlx);
+		mlx_terminate(game->mlx);
 	}
 	else
 	{

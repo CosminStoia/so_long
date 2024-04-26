@@ -6,7 +6,7 @@
 /*   By: cstoia <cstoia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 13:34:44 by cstoia            #+#    #+#             */
-/*   Updated: 2024/04/23 13:20:11 by cstoia           ###   ########.fr       */
+/*   Updated: 2024/04/26 12:43:13 by cstoia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	ft_check_texture(mlx_t *mlx, t_game *game)
 	while (i < 5)
 	{
 		game->image[i] = mlx_texture_to_image(mlx, game->texture[i]);
+		mlx_delete_texture(game->texture[i]);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: cstoia <cstoia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:03:26 by cstoia            #+#    #+#             */
-/*   Updated: 2024/04/23 13:34:38 by cstoia           ###   ########.fr       */
+/*   Updated: 2024/04/26 12:53:42 by cstoia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,27 +80,31 @@ void	ft_if4(t_game *game)
 	}
 }
 
-void	ft_input(void *param)
+void	ft_input(mlx_key_data_t keydata, void *param)
 {
 	t_game	*game;
 
 	game = (t_game *)param;
-	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(game->mlx);
+	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
+		exit(0);
 	if (game->map[game->position.y][game->position.x] != 'E')
 	{
-		if (mlx_is_key_down(game->mlx, MLX_KEY_W))
+		if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
 			ft_if1(game);
-		if (mlx_is_key_down(game->mlx, MLX_KEY_S))
+		if (keydata.key == MLX_KEY_S && keydata.action == MLX_PRESS)
 			ft_if2(game);
-		if (mlx_is_key_down(game->mlx, MLX_KEY_A))
+		if (keydata.key == MLX_KEY_A && keydata.action == MLX_PRESS)
 			ft_if3(game);
-		if (mlx_is_key_down(game->mlx, MLX_KEY_D))
+		if (keydata.key == MLX_KEY_D && keydata.action == MLX_PRESS)
 			ft_if4(game);
 		if (game->map[game->position.y][game->position.x] == 'C')
 		{
 			game->count_collectible++;
 			game->map[game->position.y][game->position.x] = '0';
 		}
+	}
+	else
+	{
+		exit(0);
 	}
 }

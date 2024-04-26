@@ -6,7 +6,7 @@
 /*   By: cstoia <cstoia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 11:00:08 by cstoia            #+#    #+#             */
-/*   Updated: 2024/04/23 13:34:37 by cstoia           ###   ########.fr       */
+/*   Updated: 2024/04/26 12:24:33 by cstoia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,5 @@ void				ft_if1(t_game *game);
 void				ft_if2(t_game *game);
 void				ft_if3(t_game *game);
 void				ft_if4(t_game *game);
-void				ft_input(void *param);
-
+void				ft_input(mlx_key_data_t keydata, void *param);
 #endif
