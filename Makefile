@@ -6,12 +6,12 @@
 #    By: cstoia <cstoia@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/13 11:26:36 by cstoia            #+#    #+#              #
-#    Updated: 2024/04/23 10:19:26 by cstoia           ###   ########.fr        #
+#    Updated: 2024/04/26 12:57:14 by cstoia           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Name of the project
-NAME = game
+NAME = so_long
 
 # Flags
 CFLAGS = -Wall -Wextra -Werror -Wunreachable-code -Ofast
