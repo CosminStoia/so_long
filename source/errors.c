@@ -6,7 +6,7 @@
 /*   By: cstoia <cstoia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 10:09:56 by cstoia            #+#    #+#             */
-/*   Updated: 2024/04/23 13:22:30 by cstoia           ###   ########.fr       */
+/*   Updated: 2024/04/26 15:07:33 by cstoia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,35 +16,35 @@ void	ft_char_error(t_game *game)
 {
 	if (game->player != 1)
 	{
-		perror("Error: Number of players invalid!");
+		ft_printf("Error:\nNumber of players invalid!");
 		exit(EXIT_FAILURE);
 	}
 	if (game->exit != 1)
 	{
-		perror("Error: Number of exits invalid!");
+		ft_printf("Error:\nNumber of exits invalid!");
 		exit(EXIT_FAILURE);
 	}
 	if (game->collectibles < 1)
 	{
-		perror("Error: Number of collectibles invalid!");
+		ft_printf("Error:\nNumber of collectibles invalid!");
 		exit(EXIT_FAILURE);
 	}
 	if (game->rows < 3)
 	{
-		perror("Error: Invalid map!");
+		ft_printf("Error:\nInvalid map!");
 		exit(EXIT_FAILURE);
 	}
 }
 
 void	ft_print_error(void)
 {
-	perror("Error: Invalid walls!");
+	ft_printf("Error:\nInvalid walls!");
 	exit(EXIT_FAILURE);
 }
 
 void	ft_map_error1(int fd)
 {
-	perror("Error: Memory allocation failed!\n");
+	ft_printf("Error:\nMemory allocation failed!\n");
 	close(fd);
 	exit(EXIT_FAILURE);
 }

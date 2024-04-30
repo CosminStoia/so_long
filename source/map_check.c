@@ -6,7 +6,7 @@
 /*   By: cstoia <cstoia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 21:28:18 by cstoia            #+#    #+#             */
-/*   Updated: 2024/04/23 13:17:22 by cstoia           ###   ########.fr       */
+/*   Updated: 2024/04/26 18:56:01 by cstoia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ft_check_map_dimensions(char **map)
 		}
 		else if (current_col != cols)
 		{
-			perror("Error: Map dimensions invalid");
+			ft_printf("Error:\nMap dimensions invalid");
 			exit(EXIT_FAILURE);
 		}
 		rows++;
@@ -46,7 +46,7 @@ int	ft_check_character_2(t_game *game, char c, int i, int j)
 {
 	if (c != '1' && c != 'P' && c != 'E' && c != 'C' && c != '0' && c != '\0')
 	{
-		perror("Error: Invalid characters");
+		ft_printf("Error:\nInvalid characters");
 		exit(EXIT_FAILURE);
 	}
 	if (c == 'P')
@@ -114,28 +114,14 @@ int	ft_check_characters(t_game *game)
 
 int	ft_validate_map(t_game *game)
 {
-	int	rows;
-	int	cols;
-
-	rows = 0;
-	cols = 0;
 	if (!ft_check_map_dimensions(game->map))
-	{
 		return (-1);
-	}
-	while (game->map[rows] != NULL)
-	{
-		cols = ft_strlen(game->map[rows]);
-		rows++;
-	}
 	if (!ft_check_characters(game))
-	{
 		return (-1);
-	}
 	ft_check_walls(game);
 	if (ft_check_flood(game) < 0)
 	{
-		perror("Error: Flood fill failed!");
+		ft_printf("Error:\nFlood fill failed!");
 		exit(EXIT_FAILURE);
 	}
 	return (1);

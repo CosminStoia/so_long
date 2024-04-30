@@ -6,7 +6,7 @@
 /*   By: cstoia <cstoia@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 13:51:06 by cstoia            #+#    #+#             */
-/*   Updated: 2024/04/23 13:23:06 by cstoia           ###   ########.fr       */
+/*   Updated: 2024/04/26 15:23:32 by cstoia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_file_error(void)
 {
-	perror("Error: Failed to open file");
+	ft_printf("Error:\nInvalid file");
 	exit(EXIT_FAILURE);
 }
 
@@ -23,6 +23,11 @@ void	ft_count_rows_and_cols(t_game *game, char *line)
 	int	len;
 
 	len = ft_strlen(line);
+	if (line[0] == '\n')
+	{
+		ft_printf("Error:\nInvalid map!");
+		exit(EXIT_FAILURE);
+	}
 	if (len > game->cols)
 		game->cols = len;
 	game->rows++;
