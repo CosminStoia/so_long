@@ -21,7 +21,7 @@ The map file is a simple text file with a .ber extension. The map must be rectan
 - C: Collectible
 - E: Exit
 - P: Player start position
-## Exemple Map
+### Exemple Map
 ```plaintext
 111111
 1P0C01
